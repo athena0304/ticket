@@ -1,1 +1,23 @@
-门票首页
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+         var docEl = window.document.documentElement;
+         var width = docEl.getBoundingClientRect().width;
+         var rootSize = width/1080*100;
+         docEl.style.fontSize = rootSize + 'px';
+       },false);
+    </script>
+    <link rel="stylesheet" href="dist/css/main.css">
+</head>
+<body>
+<div id="formbackground" style="position:absolute; width:100%; height:100%; z-index:-1">
+<img src="src/img/bg.png" height="100%" width="100%"/>
+</div>
+</body>
+</html>
+
