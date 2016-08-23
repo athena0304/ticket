@@ -55,6 +55,7 @@ gulp.task('concatcss', function() {                                //- 创建一
 gulp.task('testWatch', function () {
     gulp.watch('src/less/*.less', ['testLess']); //当所有less文件发生改变时，调用testLess任务
     gulp.watch('src/js/*.js', ['scripts']);
+    gulp.watch('src/template/*.html', ['html']);
 });
 
 gulp.task('default', ['html','testLess','scripts','img', 'testWatch']); //定义默认任务 elseTask为其他任务，该示例没有定义elseTask任务
