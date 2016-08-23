@@ -3,8 +3,15 @@ var gulp = require('gulp'), //本地安装gulp所用到的地方
 concat = require('gulp-concat'),
 uglify = require('gulp-uglify'),
 less = require('gulp-less');
+var headerfooter = require('gulp-headerfooter');
 
-
+gulp.task("html", function() {
+  return gulp.src("src/template/*.html")
+    // .pipe(flatten())
+    .pipe(headerfooter.header('src/headerfooter/header.html'))
+    .pipe(headerfooter.footer('src/headerfooter/footer.html'))
+    .pipe(gulp.dest(""))
+})
 
 gulp.task('testLess', function () {
     //编译src目录下的所有less文件
@@ -30,7 +37,7 @@ gulp.task('scripts', function() {
   //   .pipe(gulp.dest('static/js'))
 
   gulp.src(['src/js/*.js'])
-    // .pipe(concat('main.js'))
+    .pipe(concat('main.js'))
     .pipe(gulp.dest('dist/js'))
 });
 
@@ -47,10 +54,10 @@ gulp.task('concatcss', function() {                                //- 创建一
 
 gulp.task('testWatch', function () {
     gulp.watch('src/less/*.less', ['testLess']); //当所有less文件发生改变时，调用testLess任务
-    // gulp.watch('src/js/*.js', ['scripts']);
+    gulp.watch('src/js/*.js', ['scripts']);
 });
 
-gulp.task('default', ['testLess','scripts','img', 'testWatch']); //定义默认任务 elseTask为其他任务，该示例没有定义elseTask任务
+gulp.task('default', ['html','testLess','scripts','img', 'testWatch']); //定义默认任务 elseTask为其他任务，该示例没有定义elseTask任务
 
 //gulp.task(name[, deps], fn) 定义任务  name：任务名称 deps：依赖任务名称 fn：回调函数
 //gulp.src(globs[, options]) 执行任务处理的文件  globs：处理的文件路径(字符串或者字符串数组)
