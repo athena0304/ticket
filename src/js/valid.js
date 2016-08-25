@@ -108,8 +108,8 @@ validator.add(phone, [{
   stratege: 'isNonEmpty',
   errMsg: '手机号不能为空'
 }, {
-  stratege: 'length:13',
-  errMsg: '手机号为13位'
+  stratege: 'length:11',
+  errMsg: '手机号为11位'
 }]);
 
 
