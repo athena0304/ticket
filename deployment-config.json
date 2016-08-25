@@ -1,8 +1,8 @@
 {
   "type": "sftp",
-  "host": "123.59.117.103",
-  "username": "ouxuewen",
-  "password": "Ouxuewen2",
+  "host": "45.62.108.67",
+  "username": "dongzhe",
+  "password": "qAZabc123!@#",
   "port": 22,
   "remotePath": "/usr/local/ticket",
   "uploadOnSave": true

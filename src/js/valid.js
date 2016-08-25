@@ -18,6 +18,11 @@ var strategies = {
         return errMsg;
       }
     },
+    length: function(value, len, errMsg) {
+      if (value.length != len) {
+        return errMsg;
+      }
+    },
     isMobile: function(value, errMsg) {
       if (!/1[3|5|9][0-9]{9}/.test(value)) {
         return errMsg;
@@ -57,11 +62,11 @@ Validator.prototype.add = function(dom, rules) {
             ifInit = false;
           }
           strategArr.unshift(dom.value);
-          console.log(stra, strategArr)
+          // console.log(stra, strategArr)
           return result = strategies[stra].apply(dom, strategArr);
 
         }.after(function(result) {
-          // console.log(errMsg, result)
+          console.log(errMsg, result)
           if (result == undefined) {
             dom.nextSibling.innerHTML = "";
           } else {
@@ -88,27 +93,40 @@ Validator.prototype.start = function() {
   // 客户端调用
 var registerForm = document.getElementById('registerForm');
 var validator = new Validator();
-validator.add(registerForm.userName, [{
+var userName = document.getElementById('userName');
+var phone = document.getElementById('phone');
+var submit = document.getElementById('submit');
+validator.add(userName, [{
   stratege: 'isNonEmpty',
   errMsg: '用户名不能为空'
 }, {
   stratege: 'minLength:10',
   errMsg: '用户名长度不能小于10 位'
 }]);
-validator.add(registerForm.passWord, [{
-  stratege: 'minLength:7',
-  errMsg: '密码长度不能小于7 位'
+
+validator.add(phone, [{
+  stratege: 'isNonEmpty',
+  errMsg: '手机号不能为空'
+}, {
+  stratege: 'length:13',
+  errMsg: '手机号为13位'
 }]);
-validator.add(registerForm.phoneNumber, [{
-  stratege: 'isMobile',
-  errMsg: '手机号码格式不正确'
-}]);
+
+
+// validator.add(registerForm.passWord, [{
+//   stratege: 'minLength:7',
+//   errMsg: '密码长度不能小于7 位'
+// }]);
+// validator.add(registerForm.phoneNumber, [{
+//   stratege: 'isMobile',
+//   errMsg: '手机号码格式不正确'
+// }]);
 
 var validataFunc = function() {
   var errorMsg = validator.start();
   return errorMsg;
 }
-registerForm.onsubmit = function() {
+submit.onclick = function() {
   var errorMsg = validataFunc();
   if (errorMsg) {
     return false;
