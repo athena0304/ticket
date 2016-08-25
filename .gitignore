@@ -7,3 +7,4 @@ WRONG_CODE.py
 node_modules/
 dist/
 .deploy*/
+sftp-config.json
