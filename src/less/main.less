@@ -25,7 +25,7 @@ hr{border:0;height:1px}
     text-align: center;
     line-height: 1rem;
     height: 1rem;
-    background-color: rgba(129,129,129,0.7);
+    background-color: rgba(76,76,76,0.7);
     position: relative;
     font-size: 0.38rem;
     color: #fff;
@@ -44,6 +44,60 @@ hr{border:0;height:1px}
         display: inline-block;
         margin-top: 1rem;
     }
+  }
+  .form_field {
+    margin-left: 0.7rem;
+    margin-right: 0.7rem;
+    font-size: 0.38rem;
+    .validate-item {
+        height: 1.25rem;
+        line-height: 1.25rem;
+        border: 0.03rem solid #dddddd;
+        margin-bottom: 0.67rem;
+        &.choose {
+            height: 1.62rem;
+            line-height: 1.62rem;
+            border: none;
+            margin-bottom: 1rem;
+            .choose-item {
+                display: inline-block;
+                width: 6.4rem;
+                font-size: 0;
+                .item {
+                    display: inline-block;
+                    vertical-align: middle;
+                    width: 50%;
+                    height: 2rem;
+                    // margin-top: -0.2rem;
+                    li {
+                        height: 1rem;
+                        line-height: 1rem;
+                        input {
+                            display: inline;
+                            width: auto;
+                        }
+                        span {
+                            display: inline;
+                            font-size: 0.38rem;
+                        }
+                    }
+                }
+            }
+        }
+        span {
+            display: inline-block;
+            width: 2.5rem;
+            margin-left: 0.4rem;
+        }
+        input {
+            border:none;
+            // height: 1.2rem;
+            width: 6.4rem;
+            font-size: 0.38rem;
+        }
+
+    }
+
   }
 }
 /********** dongzhe end **********/
