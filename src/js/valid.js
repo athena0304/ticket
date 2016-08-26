@@ -96,12 +96,16 @@ var validator = new Validator();
 var userName = document.getElementById('userName');
 var phone = document.getElementById('phone');
 var submit = document.getElementById('submit');
+// validator.add(userName, [{
+//   stratege: 'isNonEmpty',
+//   errMsg: '用户名不能为空'
+// }, {
+//   stratege: 'minLength:10',
+//   errMsg: '用户名长度不能小于10 位'
+// }]);
 validator.add(userName, [{
   stratege: 'isNonEmpty',
   errMsg: '用户名不能为空'
-}, {
-  stratege: 'minLength:10',
-  errMsg: '用户名长度不能小于10 位'
 }]);
 
 validator.add(phone, [{
