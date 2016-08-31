@@ -134,6 +134,8 @@ submit.onclick = function() {
   var errorMsg = validataFunc();
   if (errorMsg) {
     return false;
+  } else {
+
   }
 };
 // 策略模式

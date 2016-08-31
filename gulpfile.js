@@ -10,7 +10,7 @@ gulp.task("html", function() {
     // .pipe(flatten())
     .pipe(headerfooter.header('src/headerfooter/header.html'))
     .pipe(headerfooter.footer('src/headerfooter/footer.html'))
-    .pipe(gulp.dest(""))
+    .pipe(gulp.dest("templates/purchase"))
 })
 
 gulp.task('testLess', function () {
@@ -18,7 +18,7 @@ gulp.task('testLess', function () {
     //除了reset.less和test.less（**匹配src/less的0个或多个子文件夹）
     gulp.src(['src/less/*.less'])
         .pipe(less())
-        .pipe(gulp.dest('dist/css'));
+        .pipe(gulp.dest('static/css'));
 });
 
 ////压缩css
@@ -38,18 +38,18 @@ gulp.task('scripts', function() {
 
   gulp.src(['src/js/*.js'])
     .pipe(concat('main.js'))
-    .pipe(gulp.dest('dist/js'))
+    .pipe(gulp.dest('static/js'))
 });
 
 gulp.task('img', function() {
   gulp.src(['src/img/*.png'])
-    .pipe(gulp.dest('dist/img'))
+    .pipe(gulp.dest('static/img'))
 });
 
 gulp.task('concatcss', function() {                                //- 创建一个名为 concat 的 task
     gulp.src(['src/css/*.css'])    //- 需要处理的css文件，放到一个字符串数组里
         .pipe(concat('style.css'))                            //- 合并后的文件名
-        .pipe(gulp.dest('dist/css'))                               //- 输出文件本地
+        .pipe(gulp.dest('static/css'))                               //- 输出文件本地
 });
 
 gulp.task('testWatch', function () {
