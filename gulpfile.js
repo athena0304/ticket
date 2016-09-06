@@ -16,7 +16,7 @@ gulp.task("html", function() {
 gulp.task('testLess', function () {
     //编译src目录下的所有less文件
     //除了reset.less和test.less（**匹配src/less的0个或多个子文件夹）
-    gulp.src(['src/less/*.less'])
+    return gulp.src(['src/less/*.less'])
         .pipe(less())
         .pipe(gulp.dest('static/css'));
 });
@@ -36,24 +36,27 @@ gulp.task('scripts', function() {
   //   .pipe(concat('main.js'))
   //   .pipe(gulp.dest('static/js'))
 
-  gulp.src(['src/js/*.js'])
+  return gulp.src(['src/js/*.js'])
     .pipe(concat('main.js'))
     .pipe(gulp.dest('static/js'))
 });
 
 gulp.task('img', function() {
-  gulp.src(['src/img/*.png'])
+  return gulp.src(['src/img/*.png'])
     .pipe(gulp.dest('static/img'))
 });
 
 gulp.task('concatcss', function() {                                //- 创建一个名为 concat 的 task
-    gulp.src(['src/css/*.css'])    //- 需要处理的css文件，放到一个字符串数组里
+    return gulp.src(['src/css/*.css'])    //- 需要处理的css文件，放到一个字符串数组里
         .pipe(concat('style.css'))                            //- 合并后的文件名
         .pipe(gulp.dest('static/css'))                               //- 输出文件本地
 });
 
 gulp.task('testWatch', function () {
-    gulp.watch('src/less/*.less', ['testLess']); //当所有less文件发生改变时，调用testLess任务
+    gulp.watch('src/less/*.less', ['testLess']).on("change", function(event) {
+      console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+
+    }); //当所有less文件发生改变时，调用testLess任务
     gulp.watch('src/js/*.js', ['scripts']);
     gulp.watch('src/template/*.html', ['html']);
 });
