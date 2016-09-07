@@ -5,8 +5,7 @@
     订单详情
   </div>
 </div>
-
-
+<div id="jsapi_res" style="display:none">{{jsapi_res}}</div>
 <div class="bg-normal">
 
    <div class="list-row">
@@ -16,26 +15,26 @@
     <ul>
         <li>
             <span class="row-label">参赛姓名：</span>
-            <span class="row-item">范晓宇</span>
+            <span class="row-item">{{name}}</span>
         </li>
         <li>
             <span class="row-label">报名舞种：</span>
-            <span class="row-item">Popping</span>
+            <span class="row-item">{{kinds}}</span>
         </li>
         <li>
             <span class="row-label">选手电话：</span>
-            <span class="row-item">13552266949</span>
+            <span class="row-item">{{phone}}</span>
         </li>
         <li>
             <span class="row-label">选手微信号：</span>
-            <span class="row-item">913741803</span>
+            <span class="row-item">{{wechat_no}}</span>
         </li>
     </ul>
 
    </div>
 
    <div class="list-row">
-       <span>已付报名费</span> <span class="fr">￥99.00</span>
+       <span>已付报名费</span> <span class="fr">{{total_fee}}</span>
    </div>
    <div class="list-row">
        <p>
@@ -56,9 +55,23 @@
     <a href="javascript:;" class="btn btn-white" id="orderCommit">提交</a>
 </div>
 </div>
-
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="/static/js/main.js"></script>
 <script>
+var jsapi_res = document.querySelector("#jsapi_res").innerHTML;
+
 document.querySelector("#orderCommit").onclick = function() {
-  window.location = "/orderlist.html";
-}
+     WeixinJSBridge.invoke(
+       'getBrandWCPayRequest', JSON.parse(jsapi_res),
+       function(res) {
+            if(res.err_msg=="get_brand_wcpay_request:ok"){
+                WeixinJSBridge.invoke('closeWindow',{},function(res){});
+            }else if (res.err_msg=="get_brand_wcpay_request:cancel"){
+                alert("支付被取消");
+            } else {
+                alert("支付失败");
+            }
+       }
+   );
+ }
 </script>
